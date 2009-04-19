@@ -55,7 +55,7 @@ shared_examples_for "a read/write Moneta cache" do
   
   describe "when storing values with #store, and providing an expiration" do
     before(:each) do
-      @cache.store("key", "value", :expires_in => 1)
+      @cache.store("key", "value", :expires_in => 5)
     end
 
     shared_examples_for "not expired" do
@@ -82,7 +82,7 @@ shared_examples_for "a read/write Moneta cache" do
           sleep 2
         else
           time = Time.now
-          Time.stub!(:now).and_return { time + 2 }
+          Time.stub!(:now).and_return { time + 6 }
         end
       end
       
